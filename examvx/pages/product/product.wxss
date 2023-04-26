@@ -1,0 +1,6 @@
+/* pages/product/product.wxss */
+
+.product{
+  border-bottom: 1rpx solid red;
+  padding: 30rpx;
+}

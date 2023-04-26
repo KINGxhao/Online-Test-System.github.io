@@ -1,0 +1,3 @@
+<view wx:for="{{exam}}" wx:key="item">
+  <button class="btn" bindtap="exam" data-item="{{item}}">{{item}}考试</button>
+</view>

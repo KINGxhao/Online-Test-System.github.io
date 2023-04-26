@@ -1,0 +1,21 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+/* 对所有的页面都起作用，全局wxss */
+.btn{
+  background: red;
+  color: white;
+  margin-top: 40rpx; /* 上外边距40rpx */
+}
+.input{
+  border-bottom: 1rpx solid #eee;
+  height: 80rpx;
+}

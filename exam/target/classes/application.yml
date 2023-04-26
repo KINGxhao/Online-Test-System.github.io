@@ -1,0 +1,42 @@
+mybatis-plus:
+  type-aliases-package: com.boot.jx.bean
+  global-config:
+    refresh-mapper: true
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# Spring配置
+spring:
+  freemarker:
+    suffix: .html
+  # 文件上传
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 300MB
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+  datasource:
+    name: mysql
+    url: jdbc:mysql://127.0.0.1:3306/exam?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    spring.datasource.filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    

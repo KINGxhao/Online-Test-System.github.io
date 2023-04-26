@@ -1,0 +1,6 @@
+<view class="product" wx:for="{{products}}" wx:key="item">
+  <view>{{item.product}}</view>
+  <view>{{item.price}}元</view>
+  <view>{{item.detail}}</view>
+  <view>还剩{{item.num}}个</view>
+</view>

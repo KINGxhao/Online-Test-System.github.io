@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="../../../js/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="../../../js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<ul class="breadcrumb" style="margin:0;">
+    <li><a href="#">试题管理</a></li>
+    <li>
+    <!-- 第一个问号叫调用  第二个问号是个“判断是否存在”函数，参数存在true，参数不存在false
+     -->
+    	<#if !bean??>添加试题<#else>修改试题</#if>
+    </li>
+</ul>
+<form action="/question/add" method="post" class="form-horizontal">
+	<input type="hidden" name="id" value="${(bean.id)!}"/>
+    <h5 class="page-header alert-info" style="padding:10px;margin:0 0 10px 0;">${msg!'基本信息'}</h5>
+	<div class="row col-sm-9 form-group">
+        <label class="col-sm-3 control-label">题目</label>
+        <div class="col-sm-6">
+            <input type="text" name="question" class="form-control input-sm" value="${(bean.question)!}"/>
+        </div>
+    </div>
+    <div class="row col-sm-9 form-group">
+        <label class="col-sm-3 control-label">正确答案</label>
+        <div class="col-sm-6">
+            <input type="text" name="answer" class="form-control input-sm" value="${(bean.answer)!}"/>
+        </div>
+    </div>
+    <div class="row col-sm-9 form-group">
+        <label class="col-sm-3 control-label">所属学科</label>
+        <div class="col-sm-6">
+            <input id="username" readonly name="username" class="form-control input-sm" value=""/>
+        </div>
+    </div>
+    <div class="row col-sm-9 form-group">
+        <label class="col-sm-3 control-label">题目图示</label>
+        <div class="col-sm-6">
+            <input type="hidden" name="logo" class="form-control input-sm" value="${(bean.logo)!}"/>
+            <input id="upload-image" type="button" class="btn btn-success" value="上传图片"/>
+            <img src="${(bean.logo)!}" style="max-width: 300px; display: block"/>
+        </div>
+    </div>
+
+    <div class="col-sm-3 col-sm-offset-4">
+        <input  type="submit" class="btn btn-success" value="保存"/>
+        <a class="btn btn-warning" href="javascript:window.history.back()">返回上一级</a>
+    </div>
+</form>
+<script src="../../../js/jquery.ajaxupload.js"></script>
+<script>
+	// ajaxupload是一款js插件，专用于图片上传/文件上传，小众插件
+	// 百度 webuploader 功能全，太大了，不好学，在此就弃用
+	// ajaxupload.js 基于jQuery封装而来的
+	// 主函数    name="名字" 表单提交数据时用， id="名字" js用
+	// ajax 请求方式  浏览器的js程序向后端程序发起请求
+	// 在js中，{} 1.函数体   2.对象
+	window.onload = function () {
+		document.getElementById('username').value = localStorage.getItem('exam_uid');
+		// #就是id   .就是class    ajaxUploadPrompt()绑定上传文件事件
+		$.ajaxUploadSettings.name = 'file'; // 图片也是文件
+		$('#upload-image').ajaxUploadPrompt({
+			url: '/upload', // 图片上传到哪里
+			success: function (data) { // data图片保存路径
+				// alert(data); // data变量的值弹出来  data就是图片保存路径
+				$('#upload-image').prev().val(data); // 把路径放入到输入框中
+				// <img src="图片路径"/>
+				$('#upload-image').next().attr('src', data);
+			},
+			error: function () {
+				alert('上传失败'); // 弹出提示语
+			}
+		});
+	}
+</script>
+</body>
+</html>

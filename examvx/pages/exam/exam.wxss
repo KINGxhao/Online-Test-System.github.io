@@ -1,0 +1,21 @@
+.exam{
+  padding: 40rpx 0;
+  text-align: center; /* 让里面的字水平居中 */
+}
+.question{
+  text-align: center;
+  font-weight: bold;
+  font-size: 50rpx;
+  margin-bottom: 30rpx;
+}
+.btn-group{
+  text-align: center;
+}
+.btn-answer{ /* 按钮毛病多，腾讯做按钮做的不好，按钮改样式需要提高优先级 */
+  width: 200rpx!important; /* 以最高优先级执行 */
+  display: inline-block; /* 行块级 */
+  margin: 70rpx 10rpx!important;
+}
+.btn-active{
+  opacity: 0.5; /* 半透明 */
+}

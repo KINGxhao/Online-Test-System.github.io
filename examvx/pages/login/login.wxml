@@ -1,0 +1,14 @@
+<view class="wrapper">
+  <!-- 将标签输入框中的写的内容 传给 JS中的一个变量
+    bindinput 绑定正在输入事件，当你正在写字时，会调用 onInput 函数
+    bindtap   绑定点击事件
+    1. 如果没有这个账号，Java先帮你注册    再帮你登录
+    2. 如果有这个账号，Java帮你登录，判断密码对不对，密码对，就登录成功
+    {{ 取值 }}   取变量的值
+    {{hidden}}=true 隐藏          {{hidden}}=false 出现
+   -->
+  <input class="input" placeholder="请输入学号" bindinput="onInput" data-name="username"/>
+  <input class="input" type="password" placeholder="请输入密码" bindinput="onInput" data-name="password"/>
+  <input hidden="{{hidden}}" class="input" placeholder="请输入姓名" bindinput="onInput" data-name="name"/>
+  <button class="btn" bindtap="submit">登录/注册</button>
+</view>

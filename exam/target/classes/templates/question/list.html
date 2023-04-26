@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="../../../js/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="../../../js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<ul class="breadcrumb" style="margin:0;">
+    <li><a href="#">试题管理</a></li>
+    <li>查询试题</li>
+</ul>
+<form class="form-inline" action="/question/list" method="get">
+<div class="row alert alert-info" style="margin:0;padding:3px;">
+
+	<div class="form-group">
+        <label class="control-label">选择学科</label>
+        <select class="form-control" onchange="submit()" name="exam">
+        	<option></option>
+         	<#list examList as bean>
+         		<option <#if exam==bean>selected</#if> >${bean}</option>
+         	</#list>
+        </select>
+    </div>
+    
+    <a class="btn btn-success" href="/question/add">添加试题</a>
+    
+</div>
+
+<table class="table table-condensed table-striped">
+    <tr>
+        <th>序号</th>
+        <th>主键</th>
+        <th>题目</th>
+        <th>正确答案</th>
+        <th>所属学科</th>
+        <th>图示</th>
+        <th>出题时间</th>
+        <th>使用状态</th>
+        <th>操作</th>
+    </tr>
+   <#list retList as bean>
+    <tr>
+        <td>${bean_index+1}</td>
+        <td>${(bean.id)!}</td>
+        <td>${(bean.question)!}</td>
+        <td>${(bean.answer)!}</td>
+        <td>${(bean.username)!}</td>
+        <td>
+        	<a href="${(bean.logo)!}" target="_blank">
+        		${(bean.logo)!}
+        	</a>
+        </td>
+        <td>${(bean.ctime)?string('yyyy-MM-dd HH:mm')}</td>
+        <td>${(bean.quit)!}</td>
+        <th>   <!-- add 1.添加 2.修改 合二为一 -->
+        <a class="btn btn-xs btn-success ${(bean.username)!}" 
+        	style="display: none"
+        	href="/question/add?id=${(bean.id)!}">修改</a>
+        <a class="btn btn-xs btn-danger  ${(bean.username)!}" 
+       		style="display: none"
+        	href="/question/del?id=${(bean.id)!}&exam=${exam}">删除</a>
+        <a class="btn btn-xs <#if bean.quit=='正常'>btn-warning<#else>btn-primary</#if> ${(bean.username)!}"
+        	style="display: none"
+        	href="/question/quit?id=${(bean.id)!}&exam=${exam}">
+        	<#if bean.quit=='正常'>弃用<#else>恢复</#if>
+        </a>
+        </th>
+    </tr>
+   </#list>
+
+</table>
+</form>
+
+<script> // js主函数 --> jQuery工具
+	window.onload = function () {
+		// .指的是class
+		var username = localStorage.getItem('exam_uid');
+		$('.' + username).show(); // 只把h5按钮显示出来
+	}
+</script>
+
+</body>
+</html>

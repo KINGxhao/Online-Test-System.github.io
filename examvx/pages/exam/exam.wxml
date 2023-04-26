@@ -1,0 +1,23 @@
+<view class="exam">{{exam}}考试 第{{index+1}}题</view>
+<view class="question">{{currentQ.question}}</view>
+
+<image hidden="{{!currentQ.logo}}" src="{{api}}{{currentQ.logo}}"/>
+
+<view class="btn-group">
+  <button 
+    class="btn btn-answer {{currentQ.result=='对'?'btn-active':''}}" 
+    bindtap="answer" 
+    hidden="{{!currentQ.answer}}"
+    data-answer="对">对</button>
+  <button 
+    class="btn btn-answer {{currentQ.result=='错'?'btn-active':''}}" 
+    bindtap="answer" 
+    hidden="{{!currentQ.answer}}"
+    data-answer="错">错</button>
+  <button
+    class="btn btn-answer"
+    style="width: 300rpx!important; display: {{json?'none':'inline-block'}};"
+    bindtap="submit"
+    hidden="{{currentQ.answer}}">提交答卷</button>
+
+</view>

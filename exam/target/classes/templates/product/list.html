@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="../../../js/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="../../../js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<ul class="breadcrumb" style="margin:0;">
+    <li><a href="#">商品管理</a></li>
+    <li>查询商品</li>
+</ul>
+<form class="form-inline">
+<div class="row alert alert-info" style="margin:0;padding:3px;">
+
+    
+    <a class="btn btn-success" href="">添加商品</a>
+    
+</div>
+
+<table class="table table-condensed table-striped">
+    <tr>
+        <th>序号</th>
+        <th>编号</th>
+        <th>商品名称</th>
+        <th>单价</th>
+        <th>详细描述</th>
+        <th>库存</th>
+        <th>操作</th>
+    </tr>
+   	<#list productList as bean>
+    <tr>
+        <td>${bean_index+1}</td>
+        <td>${(bean.id)!}</td>
+        <td>${(bean.product)!}</td>
+        <td>${(bean.price)!}元</td>
+        <td>${(bean.detail)!}</td>
+        <td>${(bean.num)!}个</td>
+       
+        <th>
+        <a href="">修改</a>
+        <a href="">删除</a>
+        </th>
+    </tr>
+    </#list>
+</table>
+
+</form>
+</body>
+</html>
